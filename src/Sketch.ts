@@ -22,7 +22,7 @@ export default class Sketch extends CanvasRenderer {
     }
 
     draw () {
-        if (this.x <= 0 || this.x >= this.p.width - this.input.text.length * (this.textSize / 2.3)) {
+        if (this.x <= 0 || this.x >= this.p.width - this.p.textWidth(this.input.text)) {
             this.deltaX *= -1;
         }
 
