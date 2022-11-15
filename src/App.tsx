@@ -1,12 +1,15 @@
-import React, { MutableRefObject, RefObject, useEffect, useRef } from 'react';
-import CanvasRenderer from './CanvasRenderer';
+import React, { ChangeEvent, MutableRefObject, RefObject, useEffect, useRef, useState } from 'react';
+import Sketch from './Sketch';
 
 function App () {
     const canvasParentRef: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null);
-    const renderer: MutableRefObject<CanvasRenderer | null> = useRef<CanvasRenderer | null>(null);
+    const renderer: MutableRefObject<Sketch | null> = useRef<Sketch | null>(null);
+
+    const [text, setText] = useState<string>('Hello world!');
+    const [color, setColor] = useState<string>('#27995F');
 
     useEffect(() => {
-        renderer.current = CanvasRenderer.create(canvasParentRef);
+        renderer.current = Sketch.create(canvasParentRef);
         renderer.current?.resize(1280, 720);
 
         return () => {
@@ -14,12 +17,23 @@ function App () {
         };
     }, []);
 
+    useEffect(() => {
+        renderer.current?.updateInput({
+            text,
+            color
+        });
+    }, [text, color]);
+
     return (
-        <div className="App">
-            <h1>Hello world.</h1>
-            <div>
-                <div ref={canvasParentRef}/>
-            </div>
+        <div className="app">
+            <h1>p5-typescript-react-starter demo</h1>
+            <div ref={canvasParentRef}/>
+            <input onChange={(event: ChangeEvent<HTMLInputElement>) => setText(event.target.value)} value={text}/>
+            <input
+                type="color"
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setColor(event.target.value)}
+                value={color}
+            />
         </div>
     );
 }

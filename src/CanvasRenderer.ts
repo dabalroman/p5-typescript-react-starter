@@ -3,6 +3,7 @@ import { Ref } from 'react';
 
 export default abstract class CanvasRenderer {
     p: p5;
+    input: {} = {};
 
     protected constructor (p: p5) {
         this.p = p;
@@ -11,7 +12,7 @@ export default abstract class CanvasRenderer {
         this.p.setup = this.setup.bind(this);
     }
 
-    static create (htmlRef: Ref<HTMLDivElement> | any, ...args: any): CanvasRenderer {
+    static create<T> (htmlRef: Ref<HTMLDivElement> | any, ...args: any): T {
         let renderer: CanvasRenderer | any;
 
         // eslint-disable-next-line new-cap,no-new
@@ -42,9 +43,9 @@ export default abstract class CanvasRenderer {
         this.p.resizeCanvas(width, height);
     }
 
-    draw (): void {
-        this.p.background(0, 0, 0);
-        this.p.fill(255);
-        this.p.text('Hello world!', 0, 0);
+    abstract draw (): void;
+
+    updateInput (newInput: object) {
+        this.input = { ...this.input, ...newInput };
     }
 }

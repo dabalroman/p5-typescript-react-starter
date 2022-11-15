@@ -2,6 +2,10 @@
     "name": "p5-typescript-react-starter",
     "version": "0.1.0",
     "private": false,
+    "author": {
+        "name": "Roman Dąbal",
+        "url": "https://github.com/dabalroman"
+    },
     "dependencies": {
         "p5": "^1",
         "react": "^18.2.0",
