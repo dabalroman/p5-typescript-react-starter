@@ -29,3 +29,9 @@ To build your app use:
 ```bash
 npm run build
 ```
+
+Use eslint in IDE or by running commands:
+```bash
+npm run lint
+npm run lintfix
+```
