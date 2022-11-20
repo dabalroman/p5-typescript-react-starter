@@ -4,7 +4,7 @@
     "private": false,
     "author": {
         "name": "Roman Dąbal",
-        "url": "https://github.com/dabalroman"
+        "url": "https://github.com/dabalroman/p5-typescript-react-starter"
     },
     "dependencies": {
         "p5": "^1",
